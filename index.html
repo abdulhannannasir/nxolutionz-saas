@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NXolutionz SaaS — Fiber Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef9ff',
+              100: '#d9f1ff',
+              200: '#bce7ff',
+              300: '#8ed8ff',
+              400: '#59c0ff',
+              500: '#33a1ff',
+              600: '#1a7ff5',
+              700: '#1368e1',
+              800: '#1654b6',
+              900: '#18488f',
+              950: '#0f2c57',
+            },
+            dark: {
+              800: '#0f172a',
+              900: '#0b1220',
+              950: '#060b14'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .glass { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(12px); }
+    .gradient-text { background: linear-gradient(135deg, #33a1ff, #8ed8ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .card-hover { transition: all 0.25s ease; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -12px rgba(26, 127, 245, 0.25); }
+    .sidebar-link.active { background: rgba(26, 127, 245, 0.15); color: #59c0ff; border-right: 3px solid #33a1ff; }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+    .status-online { background: #22c55e; box-shadow: 0 0 8px #22c55e; }
+    .status-offline { background: #ef4444; }
+    .status-pending { background: #eab308; }
+  </style>
+</head>
+<body class="bg-dark-950 text-slate-200 min-h-screen">
+
+  <!-- ========== AUTH VIEWS ========== -->
+  <div id="auth-view" class="min-h-screen flex">
+    <!-- Left branding -->
+    <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-brand-900 via-dark-900 to-dark-950 relative overflow-hidden">
+      <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 20% 50%, #1a7ff5 0%, transparent 50%), radial-gradient(circle at 80% 20%, #33a1ff 0%, transparent 40%);"></div>
+      <div class="relative z-10 flex flex-col justify-between p-12 w-full">
+        <div>
+          <div class="flex items-center gap-3 mb-8">
+            <div class="w-12 h-12 rounded-xl bg-brand-600 flex items-center justify-center text-white font-bold text-xl">NX</div>
+            <span class="text-2xl font-bold tracking-tight">NXolutionz</span>
+          </div>
+          <h1 class="text-4xl font-extrabold leading-tight mb-4">Future of<br><span class="gradient-text">Broadband</span></h1>
+          <p class="text-slate-400 text-lg max-w-md">Manage your fiber connection, bills, upgrades and support — all in one beautiful portal built for Multan.</p>
+        </div>
+        <div class="space-y-4">
+          <div class="flex items-center gap-3 text-sm text-slate-400">
+            <i class="fas fa-bolt text-brand-400"></i>
+            <span>Lightning-fast FTTH up to 100 Mbps</span>
+          </div>
+          <div class="flex items-center gap-3 text-sm text-slate-400">
+            <i class="fas fa-tv text-brand-400"></i>
+            <span>HD IPTV + Phone included</span>
+          </div>
+          <div class="flex items-center gap-3 text-sm text-slate-400">
+            <i class="fas fa-shield-halved text-brand-400"></i>
+            <span>24/7 Network Monitoring</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right form -->
+    <div class="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12">
+      <div class="w-full max-w-md">
+        <div class="lg:hidden flex items-center gap-3 mb-8">
+          <div class="w-10 h-10 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold">NX</div>
+          <span class="text-xl font-bold">NXolutionz</span>
+        </div>
+
+        <div id="login-form">
+          <h2 class="text-2xl font-bold mb-2">Welcome back</h2>
+          <p class="text-slate-400 mb-8">Sign in to your customer portal</p>
+
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-slate-300 mb-1.5">Email or Phone</label>
+              <input id="login-email" type="text" value="ahmed@example.com" class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-slate-700 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 outline-none transition" placeholder="03xx-xxxxxxx or email" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-300 mb-1.5">Password</label>
+              <input id="login-password" type="password" value="demo123" class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-slate-700 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 outline-none transition" />
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="rounded border-slate-600 bg-dark-800 text-brand-600 focus:ring-brand-500" checked />
+                <span class="text-slate-400">Remember me</span>
+              </label>
+              <a href="#" class="text-brand-400 hover:text-brand-300">Forgot password?</a>
+            </div>
+            <button onclick="login('customer')" class="w-full py-3.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold transition shadow-lg shadow-brand-600/25">
+              Sign In
+            </button>
+            <button onclick="login('admin')" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium transition border border-slate-700">
+              <i class="fas fa-user-shield mr-2"></i> Demo Admin Login
+            </button>
+            <button onclick="login('technician')" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium transition border border-slate-700">
+              <i class="fas fa-hard-hat mr-2"></i> Demo Field Technician
+            </button>
+          </div>
+
+          <p class="mt-8 text-center text-sm text-slate-500">
+            New customer? <button onclick="showView('register')" class="text-brand-400 hover:text-brand-300 font-medium">Create account</button>
+          </p>
+          <p class="mt-4 text-center text-xs text-slate-600">Demo credentials pre-filled. Click Sign In.</p>
+        </div>
+
+        <div id="register-form" class="hidden">
+          <h2 class="text-2xl font-bold mb-2">Create account</h2>
+          <p class="text-slate-400 mb-8">Join NXolutionz fiber network</p>
+          <div class="space-y-4">
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-sm font-medium text-slate-300 mb-1.5">First Name</label>
+                <input type="text" class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-slate-700 focus:border-brand-500 outline-none" placeholder="Ahmed" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-slate-300 mb-1.5">Last Name</label>
+                <input type="text" class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-slate-700 focus:border-brand-500 outline-none" placeholder="Khan" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-300 mb-1.5">Phone</label>
+              <input type="tel" class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-slate-700 focus:border-brand-500 outline-none" placeholder="0300-1234567" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-300 mb-1.5">Email</label>
+              <input type="email" class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-slate-700 focus:border-brand-500 outline-none" placeholder="you@email.com" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-300 mb-1.5">Area (Multan)</label>
+              <select class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-slate-700 focus:border-brand-500 outline-none">
+                <option>Gulgasht</option>
+                <option>Model Town</option>
+                <option>Wapda Town</option>
+                <option>Garden Town</option>
+                <option>Jinnah Town</option>
+                <option>Civil Line Road</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <button onclick="login('customer')" class="w-full py-3.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold transition">
+              Create Account & Continue
+            </button>
+          </div>
+          <p class="mt-6 text-center text-sm text-slate-500">
+            Already have an account? <button onclick="showView('login')" class="text-brand-400 hover:text-brand-300 font-medium">Sign in</button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== APP SHELL ========== -->
+  <div id="app-view" class="hidden min-h-screen flex">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed lg:static inset-y-0 left-0 z-40 w-64 bg-dark-900 border-r border-slate-800 transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
+      <div class="flex flex-col h-full">
+        <div class="p-5 border-b border-slate-800">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center text-white font-bold text-sm">NX</div>
+            <div>
+              <div class="font-bold text-sm">NXolutionz</div>
+              <div class="text-xs text-slate-500" id="role-label">Customer Portal</div>
+            </div>
+          </div>
+        </div>
+
+        <nav class="flex-1 p-3 space-y-1 overflow-y-auto" id="nav-customer">
+          <a href="#" onclick="navTo('dashboard')" class="sidebar-link active flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition hover:bg-slate-800/50">
+            <i class="fas fa-home w-5 text-center"></i> Dashboard
+          </a>
+          <a href="#" onclick="navTo('billing')" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 transition hover:bg-slate-800/50 hover:text-slate-200">
+            <i class="fas fa-file-invoice-dollar w-5 text-center"></i> Billing
+          </a>
+          <a href="#" onclick="navTo('plans')" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 transition hover:bg-slate-800/50 hover:text-slate-200">
+            <i class="fas fa-rocket w-5 text-center"></i> Plans & Upgrade
+          </a>
+          <a href="#" onclick="navTo('support')" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 transition hover:bg-slate-800/50 hover:text-slate-200">
+            <i class="fas fa-headset w-5 text-center"></i> Support
+          </a>
+          <a href="#" onclick="navTo('profile')" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 transition hover:bg-slate-800/50 hover:text-slate-200">
+            <i class="fas fa-user w-5 text-center"></i> Profile
+          </a>
+        </nav>
+
+        <nav class="flex-1 p-3 space-y-1 overflow-y-auto hidden" id="nav-admin">
+          <a href="#" onclick="navTo('admin-dashboard')" class="sidebar-link active flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition hover:bg-slate-800/50">
+            <i class="fas fa-chart-pie w-5 text-center"></i> Overview
+          </a>
+          <a href="#" onclick="navTo('admin-customers')" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 transition hover:bg-slate-800/50 hover:text-slate-200">
+            <i class="fas fa-users w-5 text-center"></i> Customers & Logins
+          </a>
+          <a href="#" onclick="navTo('admin-tickets')" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 transition hover:bg-slate-800/50 hover:text-slate-200">
+            <i class="fas fa-ticket w-5 text-center"></i> Tickets
+          </a>
+          <a href="#" onclick="navTo('admin-jobs')" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 transition hover:bg-slate-800/50 hover:text-slate-200">
+            <i class="fas fa-clipboard-list w-5 text-center"></i> Installation Jobs
+          </a>
+          <a href="#" onclick="navTo('admin-inventory')" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 transition hover:bg-slate-800/50 hover:text-slate-200">
+            <i class="fas fa-boxes w-5 text-center"></i> Inventory
+          </a>
+          <a href="#" onclick="navTo('admin-renewals')" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 transition hover:bg-slate-800/50 hover:text-slate-200">
+            <i class="fas fa-sync-alt w-5 text-center"></i> Login Renewals
+          </a>
+          <a href="#" onclick="navTo('admin-daily-stock')" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 transition hover:bg-slate-800/50 hover:text-slate-200">
+            <i class="fas fa-clipboard-check w-5 text-center"></i> Daily Stock Report
+          </a>
+          <a href="#" onclick="navTo('admin-plans')" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 transition hover:bg-slate-800/50 hover:text-slate-200">
+            <i class="fas fa-tags w-5 text-center"></i> Plans
+          </a>
+          <a href="#" onclick="navTo('admin-coverage')" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 transition hover:bg-slate-800/50 hover:text-slate-200">
+            <i class="fas fa-map-marker-alt w-5 text-center"></i> Coverage
+          </a>
+        </nav>
+
+        <nav class="flex-1 p-3 space-y-1 overflow-y-auto hidden" id="nav-tech">
+          <a href="#" onclick="navTo('tech-jobs')" class="sidebar-link active flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition hover:bg-slate-800/50">
+            <i class="fas fa-clipboard-list w-5 text-center"></i> My Jobs
+          </a>
+          <a href="#" onclick="navTo('tech-report')" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 transition hover:bg-slate-800/50 hover:text-slate-200">
+            <i class="fas fa-file-alt w-5 text-center"></i> Submit Report
+          </a>
+          <a href="#" onclick="navTo('tech-inventory')" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 transition hover:bg-slate-800/50 hover:text-slate-200">
+            <i class="fas fa-boxes w-5 text-center"></i> Material Stock
+          </a>
+          <a href="#" onclick="navTo('tech-daily-stock')" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 transition hover:bg-slate-800/50 hover:text-slate-200">
+            <i class="fas fa-clipboard-check w-5 text-center"></i> Daily Stock Report
+          </a>
+        </nav>
+
+        <div class="p-4 border-t border-slate-800">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-9 h-9 rounded-full bg-brand-700 flex items-center justify-center text-sm font-semibold" id="user-avatar">AK</div>
+            <div class="flex-1 min-w-0">
+              <div class="text-sm font-medium truncate" id="user-name">Ahmed Khan</div>
+              <div class="text-xs text-slate-500 truncate" id="user-plan">50 Mbps Plan</div>
+            </div>
+          </div>
+          <button onclick="logout()" class="w-full py-2 text-xs text-slate-400 hover:text-red-400 transition flex items-center justify-center gap-2">
+            <i class="fas fa-sign-out-alt"></i> Sign out
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Overlay for mobile -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/60 z-30 hidden lg:hidden" onclick="toggleSidebar()"></div>
+
+    <!-- Main content -->
+    <div class="flex-1 flex flex-col min-w-0">
+      <!-- Top bar -->
+      <header class="sticky top-0 z-20 bg-dark-900/80 backdrop-blur border-b border-slate-800 px-4 sm:px-6 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <button onclick="toggleSidebar()" class="lg:hidden p-2 rounded-lg hover:bg-slate-800">
+            <i class="fas fa-bars"></i>
+          </button>
+          <h1 class="text-lg font-semibold" id="page-title">Dashboard</h1>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="hidden sm:flex items-center gap-2 text-xs text-slate-400 bg-dark-800 px-3 py-1.5 rounded-full">
+            <span class="status-dot status-online"></span>
+            Network: Online
+          </div>
+          <button class="relative p-2 rounded-lg hover:bg-slate-800">
+            <i class="fas fa-bell text-slate-400"></i>
+            <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Pages -->
+      <main class="flex-1 p-4 sm:p-6 overflow-y-auto" id="main-content">
+        <!-- Content injected by JS -->
+      </main>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
